@@ -35,7 +35,9 @@ namespace Tocument
 			using (var cmd = connection.CreateCommand ())
 			{
 				connection.Open ();
-				cmd.CommandText = "SELECT name FROM searchIndex LIMIT 10 WHERE name LIKE %" + searchQuery +  "%";
+				String sqlQuery = "SELECT name FROM searchIndex WHERE name LIKE '%" + searchQuery +  "%'";
+				Console.WriteLine(sqlQuery);
+				cmd.CommandText = sqlQuery;
 				using (var reader = cmd.ExecuteReader ())
 				{
 					while (reader.Read ())
