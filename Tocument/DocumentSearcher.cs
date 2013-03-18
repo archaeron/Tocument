@@ -37,7 +37,7 @@ namespace Tocument
 			using (var cmd = connection.CreateCommand ())
 			{
 				connection.Open ();
-				String sqlQuery = "SELECT name FROM searchIndex WHERE name LIKE @searchQuery";
+				String sqlQuery = "SELECT name, path FROM searchIndex WHERE name LIKE @searchQuery LIMIT 100";
 				Console.WriteLine(sqlQuery);
 				cmd.CommandText = sqlQuery;
 				cmd.Parameters.AddWithValue("searchQuery", "%" + searchQuery + "%");
@@ -48,6 +48,12 @@ namespace Tocument
 					{
 						Console.Error.Write ("(Row ");
 						Write (reader, 0);
+						SearchIndex entry = new SearchIndex();
+						entry.Name = (String)reader[0];
+						entry.Path = (String)reader[1];
+
+						result.Add(entry);
+
 						for (int i = 1; i < reader.FieldCount; ++i)
 						{
 							Console.Error.Write(" ");
