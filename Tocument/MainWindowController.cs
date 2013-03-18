@@ -49,7 +49,6 @@ namespace Tocument
 		public override void AwakeFromNib ()
 		{
 			base.AwakeFromNib ();
-
 			var documents = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			String docPath = Path.Combine (documents, "Documents", "Tocuments", "Mono.docset", "Contents", "Resources", "Documents");
 			Console.WriteLine(docPath);
@@ -59,6 +58,8 @@ namespace Tocument
 
 			methodList.DataSource = new MethodListDataSource();
 
+			base.AcceptsFirstResponder ();
+			searchField.BecomeFirstResponder ();
 
 			searchSubmit.Activated += (object sender, EventArgs e) => 
 			{
