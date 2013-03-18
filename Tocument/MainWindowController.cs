@@ -63,48 +63,29 @@ namespace Tocument
 			base.AcceptsFirstResponder ();
 			searchField.BecomeFirstResponder ();
 
-			searchSubmit.Activated += (object sender, EventArgs e) => 
-			{
-				String searchQuery = searchField.StringValue;
-				PerformSearch(searchQuery);
-			};
+			searchSubmit.Activated += PerformSearch;
 
-			startSearchButton.Activated +=  (object sender, EventArgs e) =>
-			{
-				String searchQuery = searchField.StringValue;
-				PerformSearch(searchQuery);
-			
-//				Console.WriteLine("begin searching with LINQ");
-//				var searchResults = docSearcher.Search(searchQuery);
-//
-//				foreach(var result in searchResults)
-//				{
-//					Console.WriteLine(result.Name + ": " + result.Path);
-//				}
-//				Console.WriteLine("end searching with LINQ");
-
-
-				Console.WriteLine("end searching with LINQ");
-			};
+			startSearchButton.Activated += PerformSearch;
 		}
 
-		void PerformSearch(String searchQuery)
+		void PerformSearch(object sender, EventArgs e)
 		{
+			String searchQuery = searchField.StringValue;
 			List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
-			Console.WriteLine(searchResultsSQL);
-			
-			((MethodListDataSource)methodList.DataSource).Elements = searchResultsSQL;
+			List<SearchIndex> SortedList = searchResultsSQL.OrderBy(o=>o.Type).ToList();
+
+			((MethodListDataSource)methodList.DataSource).Elements = SortedList;
 			methodList.ReloadData();
 			
-			if(searchResultsSQL.Count > 0)
+			if(SortedList.Count > 0)
 			{
-				LoadDocumentationFromPath(searchResultsSQL.First().Path);
+				LoadDocumentationFromPath(SortedList.First().Path);
 			}
 		}
 
 		void HandleItemChanged(object sender, MyItemChangedEventArgs e)
 		{
-			Console.WriteLine("Item Changed: " + e.MyItem.Name);
+			Console.WriteLine(e.MyItem.Type);
 			LoadDocumentationFromPath(e.MyItem.Path);
 		}
 
@@ -117,7 +98,8 @@ namespace Tocument
 		
 		//strongly typed window accessor
 		public new MainWindow Window {
-			get {
+			get
+			{
 				return (MainWindow)base.Window;
 			}
 		}

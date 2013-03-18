@@ -25,8 +25,6 @@ namespace Tocument
 			
 		protected void OnMyItemChanged(MyItemChangedEventArgs e)
 		{
-			Console.WriteLine("boom");
-			Console.WriteLine(ItemChanged);
 			if (ItemChanged != null)
 			{
 				ItemChanged(this, e);

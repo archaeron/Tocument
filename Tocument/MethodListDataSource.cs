@@ -16,20 +16,19 @@ namespace Tocument
 			Elements = new List<SearchIndex>();
 		}
 
-		// This method will be called by the NSTableView control to learn the number of rows to display.
 		[Export ("numberOfRowsInTableView:")]
 		public int NumberOfRowsInTableView(NSTableView table)
 		{
 			return Elements.Count;
 		}
-		
-		// This method will be called by the control for each column and each row.
+
 		[Export ("tableView:objectValueForTableColumn:row:")]
 		public NSObject ObjectValueForTableColumn(NSTableView table, NSTableColumn col, int row)
 		{
-//			Console.WriteLine(row);
 			if(row >= Elements.Count)
+			{
 				return null;
+			}
 
 			return new NSString(Elements[row].Name);
 		}
