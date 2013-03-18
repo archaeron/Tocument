@@ -27,12 +27,13 @@ namespace Tocument
 		[Export ("tableView:objectValueForTableColumn:row:")]
 		public NSObject ObjectValueForTableColumn(NSTableView table, NSTableColumn col, int row)
 		{
-			Console.WriteLine(row);
+//			Console.WriteLine(row);
 			if(row >= Elements.Count)
 				return null;
 
 			return new NSString(Elements[row].Name);
 		}
+	
 	}
 }
 

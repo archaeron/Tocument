@@ -57,6 +57,8 @@ namespace Tocument
 			NSUrlRequest request = new NSUrlRequest(url);
 			resultView.MainFrame.LoadRequest(request);
 
+			var myDel = new MethodListDataSourceDelegate();
+			methodList.Delegate = myDel;
 			methodList.DataSource = new MethodListDataSource();
 
 			startSearchButton.Activated +=  (object sender, EventArgs e) =>

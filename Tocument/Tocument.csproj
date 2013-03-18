@@ -90,6 +90,7 @@
     <Compile Include="SearchIndex.cs" />
     <Compile Include="DocumentSearcher.cs" />
     <Compile Include="MethodListDataSource.cs" />
+    <Compile Include="MethodListDataSourceDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
