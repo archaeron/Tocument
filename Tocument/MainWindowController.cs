@@ -60,6 +60,12 @@ namespace Tocument
 
 			methodList.DataSource = new MethodListDataSource();
 
+
+			searchSubmit.Activated += (object sender, EventArgs e) => 
+			{
+				Console.WriteLine("do search on enter");
+			};
+
 			startSearchButton.Activated +=  (object sender, EventArgs e) =>
 			{
 				String searchQuery = searchField.StringValue;
