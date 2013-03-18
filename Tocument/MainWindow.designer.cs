@@ -8,20 +8,11 @@ using MonoMac.Foundation;
 
 namespace Tocument
 {
-	[Register ("MainWindow")]
-	partial class MainWindow
-	{
-		
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
-
 	[Register ("MainWindowController")]
 	partial class MainWindowController
 	{
 		[Outlet]
-		MonoMac.AppKit.NSScrollView methodList { get; set; }
+		MonoMac.AppKit.NSTableView methodList { get; set; }
 
 		[Outlet]
 		MonoMac.AppKit.NSTextField searchField { get; set; }
@@ -53,6 +44,15 @@ namespace Tocument
 				resultView.Dispose ();
 				resultView = null;
 			}
+		}
+	}
+
+	[Register ("MainWindow")]
+	partial class MainWindow
+	{
+		
+		void ReleaseDesignerOutlets ()
+		{
 		}
 	}
 }
