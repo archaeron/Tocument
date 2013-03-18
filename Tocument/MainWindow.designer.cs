@@ -12,6 +12,9 @@ namespace Tocument
 	partial class MainWindowController
 	{
 		[Outlet]
+		MonoMac.AppKit.NSScrollView methodList { get; set; }
+
+		[Outlet]
 		MonoMac.AppKit.NSTextField searchField { get; set; }
 
 		[Outlet]
@@ -22,6 +25,11 @@ namespace Tocument
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (methodList != null) {
+				methodList.Dispose ();
+				methodList = null;
+			}
+
 			if (searchField != null) {
 				searchField.Dispose ();
 				searchField = null;
