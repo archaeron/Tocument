@@ -60,6 +60,8 @@ namespace Tocument
 
 			methodList.DataSource = new MethodListDataSource();
 
+			base.AcceptsFirstResponder ();
+			searchField.BecomeFirstResponder ();
 
 			searchSubmit.Activated += (object sender, EventArgs e) => 
 			{
