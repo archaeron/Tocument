@@ -11,6 +11,7 @@ namespace Tocument
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
 	{
 		DocumentSearcher docSearcher;
+		String docPath = Path.Combine (Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Documents", "Tocuments", "Mono.docset", "Contents", "Resources", "Documents");
 		
 		#region Constructors
 		
@@ -50,15 +51,13 @@ namespace Tocument
 		{
 			base.AwakeFromNib ();
 
-			var documents = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			String docPath = Path.Combine (documents, "Documents", "Tocuments", "Mono.docset", "Contents", "Resources", "Documents");
-			Console.WriteLine(docPath);
-			NSUrl url = new NSUrl(Path.Combine(docPath, "index.html"));
-			NSUrlRequest request = new NSUrlRequest(url);
-			resultView.MainFrame.LoadRequest(request);
+			LoadDocumentationFromPath("index.html");
 
-			var myDel = new MethodListDataSourceDelegate();
-			methodList.Delegate = myDel;
+			MethodListDataSourceDelegate methodListDataSourceDelegate = new MethodListDataSourceDelegate();
+			methodListDataSourceDelegate.ItemChanged += HandleItemChanged;
+
+			methodList.Delegate = methodListDataSourceDelegate;
+
 			methodList.DataSource = new MethodListDataSource();
 
 			startSearchButton.Activated +=  (object sender, EventArgs e) =>
@@ -71,10 +70,10 @@ namespace Tocument
 				((MethodListDataSource)methodList.DataSource).Elements = searchResultsSQL;
 				methodList.ReloadData();
 
-				Console.WriteLine(Path.Combine(docPath, searchResultsSQL.First().Path));
-				NSUrl docUrl = new NSUrl(Path.Combine(docPath, searchResultsSQL.First().Path));
-				NSUrlRequest docRequest = new NSUrlRequest(docUrl);
-				resultView.MainFrame.LoadRequest(docRequest);
+				if(searchResultsSQL.Count > 0)
+				{
+					LoadDocumentationFromPath(searchResultsSQL.First().Path);
+				}
 
 
 
@@ -90,6 +89,19 @@ namespace Tocument
 
 				Console.WriteLine("end searching with LINQ");
 			};
+		}
+
+		void HandleItemChanged (object sender, MyItemChangedEventArgs e)
+		{
+			Console.WriteLine("Item Changed: " + e.MyItem.Name);
+			LoadDocumentationFromPath(e.MyItem.Path);
+		}
+
+		void LoadDocumentationFromPath(String path)
+		{
+			NSUrl url = new NSUrl(Path.Combine(docPath, path));
+			NSUrlRequest request = new NSUrlRequest(url);
+			resultView.MainFrame.LoadRequest(request);
 		}
 		
 		//strongly typed window accessor
