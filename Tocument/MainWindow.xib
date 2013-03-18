@@ -121,7 +121,6 @@
 							<string key="NSFrame">{{1077, 636}, {83, 25}}</string>
 							<reference key="NSSuperview" ref="312036702"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="813242800">
@@ -188,7 +187,6 @@
 							<string key="NSFrame">{{204, 602}, {38, 32}}</string>
 							<reference key="NSSuperview" ref="312036702"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="389385462">
@@ -216,7 +214,6 @@
 							<string key="NSFrame">{{235, 602}, {35, 32}}</string>
 							<reference key="NSSuperview" ref="312036702"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="392551151">
@@ -295,8 +292,8 @@
 																</object>
 															</object>
 															<object class="NSTextFieldCell" key="NSDataCell" id="966645391">
-																<int key="NSCellFlags">337641536</int>
-																<int key="NSCellFlags2">2048</int>
+																<int key="NSCellFlags">69206081</int>
+																<int key="NSCellFlags2">6144</int>
 																<string key="NSContents">Text Cell</string>
 																<reference key="NSSupport" ref="983868301"/>
 																<reference key="NSControlView" ref="699142126"/>
@@ -384,7 +381,7 @@
 									<string key="NSFrame">{{0, 20}, {180, 566}}</string>
 									<reference key="NSSuperview" ref="633565423"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
+									<reference key="NSNextKeyView" ref="638906709"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSHuggingPriority">{169, 653}</string>
 									<int key="NSsFlags">150066</int>
@@ -514,6 +511,14 @@
 						<reference key="destination" ref="699142126"/>
 					</object>
 					<int key="connectionID">90</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">methodRow</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="966645391"/>
+					</object>
+					<int key="connectionID">252</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -1577,7 +1582,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">251</int>
+			<int key="maxID">252</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1598,6 +1603,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>methodList</string>
+							<string>methodRow</string>
 							<string>resultView</string>
 							<string>searchField</string>
 							<string>startSearchButton</string>
@@ -1605,6 +1611,7 @@
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTableView</string>
+							<string>NSTextFieldCell</string>
 							<string>WebView</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
@@ -1615,6 +1622,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>methodList</string>
+							<string>methodRow</string>
 							<string>resultView</string>
 							<string>searchField</string>
 							<string>startSearchButton</string>
@@ -1624,6 +1632,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">methodList</string>
 								<string key="candidateClassName">NSTableView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">methodRow</string>
+								<string key="candidateClassName">NSTextFieldCell</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">resultView</string>
