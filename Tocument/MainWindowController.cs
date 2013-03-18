@@ -11,7 +11,7 @@ namespace Tocument
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
 	{
 		DocumentSearcher docSearcher;
-
+		
 		#region Constructors
 		
 		// Called when created from unmanaged code
@@ -38,23 +38,34 @@ namespace Tocument
 		{
 			var documents = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			
-			String dbPath = Path.Combine (documents, "Mono.docset", "Contents", "Resources", "docSet.dsidx");
+			String dbPath = Path.Combine (documents, "Documents", "Tocuments", "Mono.docset", "Contents", "Resources", "docSet.dsidx");
 			Console.WriteLine(dbPath);
 			
 			docSearcher = new DocumentSearcher(dbPath);
 		}
 		
 		#endregion
-
+		
 		public override void AwakeFromNib ()
 		{
 			base.AwakeFromNib ();
 			startSearchButton.Activated +=  (object sender, EventArgs e) =>
 			{
 				String searchQuery = searchField.StringValue;
-				Console.WriteLine(searchQuery);
-				List<String> searchResults = docSearcher.Search(searchQuery);
-				Console.WriteLine(searchResults);
+				
+				//				List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
+				//				Console.WriteLine(searchResultsSQL);
+				
+				Console.WriteLine("begin searching with LINQ");
+				
+				var searchResults = docSearcher.Search(searchQuery);
+				
+				
+				foreach(var result in searchResults)
+				{
+					Console.WriteLine(result.Name + ": " + result.Path);
+				}
+				Console.WriteLine("end searching with LINQ");
 			};
 		}
 		
@@ -66,4 +77,3 @@ namespace Tocument
 		}
 	}
 }
-

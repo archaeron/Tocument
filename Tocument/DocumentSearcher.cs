@@ -4,14 +4,14 @@ using System.IO;
 using Mono.Data.Sqlite;
 using System.Linq;
 using System.Data.Linq;
-
+using System.Text;
 
 namespace Tocument
 {
 	public class DocumentSearcher
 	{
 		String databasePath;
-
+		
 		public DocumentSearcher (String databasePath)
 		{
 			this.databasePath = databasePath;
@@ -20,24 +20,28 @@ namespace Tocument
 				throw new Exception("your database does not exist: " + this.databasePath );
 			}
 		}
-
+		
 		public SqliteConnection CreateConnection(String databasePath)
 		{
 			Console.WriteLine("loading database");
-			return new SqliteConnection("Data Source=" + this.databasePath);
+			return new SqliteConnection("Data Source=" + this.databasePath + ",version=3");
 		}
-
-		public List<String> Search(String searchQuery)
+		
+		public List<SearchIndex> SearchSQL(String searchQuery)
 		{
 			Console.WriteLine("Searching for: " + searchQuery);
 			var connection = CreateConnection(this.databasePath);
-						
+			
+			List<SearchIndex> result = new List<SearchIndex>();
+			
 			using (var cmd = connection.CreateCommand ())
 			{
 				connection.Open ();
-				String sqlQuery = "SELECT name FROM searchIndex WHERE name LIKE '%" + searchQuery +  "%'";
+				String sqlQuery = "SELECT name FROM searchIndex WHERE name LIKE @searchQuery";
 				Console.WriteLine(sqlQuery);
 				cmd.CommandText = sqlQuery;
+				cmd.Parameters.AddWithValue("searchQuery", "%" + searchQuery + "%");
+				var l = cmd.Parameters;
 				using (var reader = cmd.ExecuteReader ())
 				{
 					while (reader.Read ())
@@ -54,28 +58,43 @@ namespace Tocument
 				}
 				connection.Close ();
 			}
-
-			return new List<String>();
+			
+			return result;
 		}
-
+		
+		public IQueryable<SearchIndex> Search(String searchQuery)
+		{
+			Console.WriteLine("Searching for: " + searchQuery);
+			var connection = CreateConnection(this.databasePath);
+			
+			var linq = new DataContext (connection);
+			linq.Log = Console.Out;
+			
+			
+			
+			Table<SearchIndex> table = linq.GetTable<SearchIndex>();
+			
+			var query = from doc in table
+				where doc.Name.Contains("Mono")
+					select doc;
+			
+			var l = linq.GetCommand(query).Parameters;
+			
+			
+			//			foreach (var p in query) {
+			//				Console.WriteLine(p.Name);
+			//			}
+			
+			return query;
+		}
+		
 		static void Write(SqliteDataReader reader, int index)
 		{
 			Console.Error.Write("({0} '{1}')", 
 			                    reader.GetName(index), 
 			                    reader [index]);
 		}
-
-//		var linq = new DataContext (connection);
-//		Table<SearchIndex> table = linq.GetTable<SearchIndex>();
-//		
-//		var query = (from doc in table
-//		             where doc.Name.StartsWith("S")
-//		             select doc);
-//		
-//		foreach (var p in query) {
-//			Console.WriteLine(p.Name);
-//		}
-
+		
 	}
+	
 }
-
