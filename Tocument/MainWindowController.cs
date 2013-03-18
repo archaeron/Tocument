@@ -63,26 +63,15 @@ namespace Tocument
 
 			searchSubmit.Activated += (object sender, EventArgs e) => 
 			{
-				Console.WriteLine("do search on enter");
+				String searchQuery = searchField.StringValue;
+				PerformSearch(searchQuery);
 			};
 
 			startSearchButton.Activated +=  (object sender, EventArgs e) =>
 			{
 				String searchQuery = searchField.StringValue;
-				
-				List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
-				Console.WriteLine(searchResultsSQL);
-
-				((MethodListDataSource)methodList.DataSource).Elements = searchResultsSQL;
-				methodList.ReloadData();
-
-				if(searchResultsSQL.Count > 0)
-				{
-					LoadDocumentationFromPath(searchResultsSQL.First().Path);
-				}
-
-
-
+				PerformSearch(searchQuery);
+			
 //				Console.WriteLine("begin searching with LINQ");
 //				var searchResults = docSearcher.Search(searchQuery);
 //
@@ -97,7 +86,21 @@ namespace Tocument
 			};
 		}
 
-		void HandleItemChanged (object sender, MyItemChangedEventArgs e)
+		void PerformSearch(String searchQuery)
+		{
+			List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
+			Console.WriteLine(searchResultsSQL);
+			
+			((MethodListDataSource)methodList.DataSource).Elements = searchResultsSQL;
+			methodList.ReloadData();
+			
+			if(searchResultsSQL.Count > 0)
+			{
+				LoadDocumentationFromPath(searchResultsSQL.First().Path);
+			}
+		}
+
+		void HandleItemChanged(object sender, MyItemChangedEventArgs e)
 		{
 			Console.WriteLine("Item Changed: " + e.MyItem.Name);
 			LoadDocumentationFromPath(e.MyItem.Path);
