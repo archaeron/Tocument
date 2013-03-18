@@ -23,7 +23,6 @@ namespace Tocument
 		
 		public SqliteConnection CreateConnection(String databasePath)
 		{
-			Console.WriteLine("loading database");
 			return new SqliteConnection("Data Source=" + this.databasePath + ",version=3");
 		}
 		
@@ -37,7 +36,7 @@ namespace Tocument
 			using (var cmd = connection.CreateCommand ())
 			{
 				connection.Open ();
-				String sqlQuery = "SELECT name, path, type FROM searchIndex WHERE name LIKE @searchQuery LIMIT 100";
+				String sqlQuery = "SELECT name, path, type FROM searchIndex WHERE name LIKE @searchQuery ORDER BY name LIMIT 100";
 				Console.WriteLine(sqlQuery);
 				cmd.CommandText = sqlQuery;
 				cmd.Parameters.AddWithValue("searchQuery", "%" + searchQuery + "%");
@@ -84,13 +83,6 @@ namespace Tocument
 			//			}
 			
 			return query;
-		}
-		
-		static void Write(SqliteDataReader reader, int index)
-		{
-			Console.Error.Write("({0} '{1}')", 
-			                    reader.GetName(index), 
-			                    reader [index]);
 		}
 		
 	}

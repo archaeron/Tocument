@@ -30,7 +30,8 @@ namespace Tocument
 				return null;
 			}
 
-			return new NSString(Elements[row].Name);
+			SearchIndex currentElement = Elements[row];
+			return new NSString(currentElement.Type + ": " + currentElement.Name);
 		}
 	
 	}

@@ -85,7 +85,6 @@ namespace Tocument
 
 		void HandleItemChanged(object sender, MyItemChangedEventArgs e)
 		{
-			Console.WriteLine(e.MyItem.Type);
 			LoadDocumentationFromPath(e.MyItem.Path);
 		}
 
