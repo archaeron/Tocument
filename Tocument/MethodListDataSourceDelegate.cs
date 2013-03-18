@@ -34,9 +34,9 @@ namespace Tocument
 		
 	public class MyItemChangedEventArgs : EventArgs
 	{
-		public SearchIndex MyItem { get; set; }
+		public DocumentEntry MyItem { get; set; }
 		
-		public MyItemChangedEventArgs(SearchIndex i)
+		public MyItemChangedEventArgs(DocumentEntry i)
 		{
 			MyItem = i;
 		}

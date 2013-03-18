@@ -71,8 +71,8 @@ namespace Tocument
 		void PerformSearch(object sender, EventArgs e)
 		{
 			String searchQuery = searchField.StringValue;
-			List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
-			List<SearchIndex> SortedList = searchResultsSQL.OrderBy(o=>o.Type).ToList();
+			List<DocumentEntry> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
+			List<DocumentEntry> SortedList = searchResultsSQL.OrderBy(o=>o.Type).ToList();
 
 			((MethodListDataSource)methodList.DataSource).Elements = SortedList;
 			methodList.ReloadData();

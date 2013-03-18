@@ -26,12 +26,12 @@ namespace Tocument
 			return new SqliteConnection("Data Source=" + this.databasePath + ",version=3");
 		}
 		
-		public List<SearchIndex> SearchSQL(String searchQuery)
+		public List<DocumentEntry> SearchSQL(String searchQuery)
 		{
 			Console.WriteLine("Searching for: " + searchQuery);
 			var connection = CreateConnection(this.databasePath);
 			
-			List<SearchIndex> result = new List<SearchIndex>();
+			List<DocumentEntry> result = new List<DocumentEntry>();
 			
 			using (var cmd = connection.CreateCommand ())
 			{
@@ -45,7 +45,7 @@ namespace Tocument
 				{
 					while (reader.Read ())
 					{
-						SearchIndex entry = new SearchIndex();
+						DocumentEntry entry = new DocumentEntry();
 						entry.Name = (String)reader[0];
 						entry.Path = (String)reader[1];
 						entry.Type = (String)reader[2];
@@ -59,7 +59,7 @@ namespace Tocument
 			return result;
 		}
 		
-		public IQueryable<SearchIndex> Search(String searchQuery)
+		public IQueryable<DocumentEntry> Search(String searchQuery)
 		{
 			Console.WriteLine("Searching for: " + searchQuery);
 			var connection = CreateConnection(this.databasePath);
@@ -69,7 +69,7 @@ namespace Tocument
 			
 			
 			
-			Table<SearchIndex> table = linq.GetTable<SearchIndex>();
+			Table<DocumentEntry> table = linq.GetTable<DocumentEntry>();
 			
 			var query = from doc in table
 				where doc.Name.Contains("Mono")

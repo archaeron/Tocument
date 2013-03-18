@@ -5,7 +5,7 @@ namespace Tocument
 {
 
 	[Table(Name = "searchIndex")]
-	public class SearchIndex
+	public class DocumentEntry
 	{
 		[Column(Name = "id", IsPrimaryKey = true)]
 		public int ID;

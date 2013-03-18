@@ -8,12 +8,12 @@ namespace Tocument
 	[Register ("MethodListDataSource")]
 	public class MethodListDataSource : NSTableViewDataSource
 	{
-		public List<SearchIndex> Elements
+		public List<DocumentEntry> Elements
 		{ get; set; }
 
 		public MethodListDataSource()
 		{
-			Elements = new List<SearchIndex>();
+			Elements = new List<DocumentEntry>();
 		}
 
 		[Export ("numberOfRowsInTableView:")]
@@ -30,7 +30,7 @@ namespace Tocument
 				return null;
 			}
 
-			SearchIndex currentElement = Elements[row];
+			DocumentEntry currentElement = Elements[row];
 			return new NSString(currentElement.Type + ": " + currentElement.Name);
 		}
 	

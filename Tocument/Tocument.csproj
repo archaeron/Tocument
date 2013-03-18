@@ -88,10 +88,10 @@
     <Compile Include="AppDelegate.designer.cs">
       <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchIndex.cs" />
     <Compile Include="DocumentSearcher.cs" />
     <Compile Include="MethodListDataSource.cs" />
     <Compile Include="MethodListDataSourceDelegate.cs" />
+    <Compile Include="DocumentEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
