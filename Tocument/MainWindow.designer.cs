@@ -8,6 +8,15 @@ using MonoMac.Foundation;
 
 namespace Tocument
 {
+	[Register ("MainWindow")]
+	partial class MainWindow
+	{
+		
+		void ReleaseDesignerOutlets ()
+		{
+		}
+	}
+
 	[Register ("MainWindowController")]
 	partial class MainWindowController
 	{
@@ -44,15 +53,6 @@ namespace Tocument
 				resultView.Dispose ();
 				resultView = null;
 			}
-		}
-	}
-
-	[Register ("MainWindow")]
-	partial class MainWindow
-	{
-		
-		void ReleaseDesignerOutlets ()
-		{
 		}
 	}
 }

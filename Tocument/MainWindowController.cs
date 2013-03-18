@@ -57,30 +57,31 @@ namespace Tocument
 			NSUrlRequest request = new NSUrlRequest(url);
 			resultView.MainFrame.LoadRequest(request);
 
-
 			startSearchButton.Activated +=  (object sender, EventArgs e) =>
 			{
 				String searchQuery = searchField.StringValue;
 				
 				List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
 				Console.WriteLine(searchResultsSQL);
-				
-//				Console.WriteLine("begin searching with LINQ");
-//				var searchResults = docSearcher.Search(searchQuery);
-				
 
+
+				
 				Console.WriteLine(Path.Combine(docPath, searchResultsSQL.First().Path));
 				NSUrl docUrl = new NSUrl(Path.Combine(docPath, searchResultsSQL.First().Path));
 				NSUrlRequest docRequest = new NSUrlRequest(docUrl);
 				resultView.MainFrame.LoadRequest(docRequest);
+
+//				Console.WriteLine("begin searching with LINQ");
+//				var searchResults = docSearcher.Search(searchQuery);
 //
 //				foreach(var result in searchResults)
 //				{
 //					Console.WriteLine(result.Name + ": " + result.Path);
 //				}
 //				Console.WriteLine("end searching with LINQ");
-				methodList.
 
+
+				Console.WriteLine("end searching with LINQ");
 			};
 		}
 		
