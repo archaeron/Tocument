@@ -66,9 +66,8 @@ namespace Tocument
 				Console.WriteLine(searchResultsSQL);
 				
 //				Console.WriteLine("begin searching with LINQ");
-				
 //				var searchResults = docSearcher.Search(searchQuery);
-//				
+				
 
 				Console.WriteLine(Path.Combine(docPath, searchResultsSQL.First().Path));
 				NSUrl docUrl = new NSUrl(Path.Combine(docPath, searchResultsSQL.First().Path));
@@ -80,7 +79,7 @@ namespace Tocument
 //					Console.WriteLine(result.Name + ": " + result.Path);
 //				}
 //				Console.WriteLine("end searching with LINQ");
-
+				methodList.
 
 			};
 		}
