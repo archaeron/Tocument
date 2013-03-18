@@ -49,23 +49,37 @@ namespace Tocument
 		public override void AwakeFromNib ()
 		{
 			base.AwakeFromNib ();
+
+			var documents = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			String dbPath = Path.Combine (documents, "Documents", "Tocuments", "Mono.docset", "Contents", "Resources", "Documents", "index.html");
+			Console.WriteLine(dbPath);
+			NSUrl url = new NSUrl(dbPath);
+			NSUrlRequest request = new NSUrlRequest(url);
+			resultView.MainFrame.LoadRequest(request);
+
+
 			startSearchButton.Activated +=  (object sender, EventArgs e) =>
 			{
 				String searchQuery = searchField.StringValue;
 				
-				//				List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
-				//				Console.WriteLine(searchResultsSQL);
+				List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
+				Console.WriteLine(searchResultsSQL);
 				
 				Console.WriteLine("begin searching with LINQ");
 				
 				var searchResults = docSearcher.Search(searchQuery);
 				
-				
+//				NSUrl url = new NSUrl(dbPath);
+//				NSUrlRequest request = new NSUrlRequest(url);
+//				resultView.MainFrame.LoadRequest(request);
+
 				foreach(var result in searchResults)
 				{
 					Console.WriteLine(result.Name + ": " + result.Path);
 				}
 				Console.WriteLine("end searching with LINQ");
+
+
 			};
 		}
 		

@@ -16,6 +16,9 @@ namespace Tocument
 
 		[Outlet]
 		MonoMac.AppKit.NSButton startSearchButton { get; set; }
+
+		[Outlet]
+		MonoMac.WebKit.WebView resultView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -27,6 +30,11 @@ namespace Tocument
 			if (startSearchButton != null) {
 				startSearchButton.Dispose ();
 				startSearchButton = null;
+			}
+
+			if (resultView != null) {
+				resultView.Dispose ();
+				resultView = null;
 			}
 		}
 	}
