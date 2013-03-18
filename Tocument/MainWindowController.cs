@@ -51,9 +51,9 @@ namespace Tocument
 			base.AwakeFromNib ();
 
 			var documents = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			String docPath = Path.Combine (documents, "Documents", "Tocuments", "Mono.docset", "Contents", "Resources", "Documents");
-			Console.WriteLine(docPath);
-			NSUrl url = new NSUrl(Path.Combine(docPath, "index.html"));
+			String dbPath = Path.Combine (documents, "Documents", "Tocuments", "Mono.docset", "Contents", "Resources", "Documents", "index.html");
+			Console.WriteLine(dbPath);
+			NSUrl url = new NSUrl(dbPath);
 			NSUrlRequest request = new NSUrlRequest(url);
 			resultView.MainFrame.LoadRequest(request);
 
@@ -65,23 +65,19 @@ namespace Tocument
 				List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
 				Console.WriteLine(searchResultsSQL);
 				
-//				Console.WriteLine("begin searching with LINQ");
+				Console.WriteLine("begin searching with LINQ");
 				
-//				var searchResults = docSearcher.Search(searchQuery);
-//				
+				var searchResults = docSearcher.Search(searchQuery);
+				
+//				NSUrl url = new NSUrl(dbPath);
+//				NSUrlRequest request = new NSUrlRequest(url);
+//				resultView.MainFrame.LoadRequest(request);
 
-				Console.WriteLine(Path.Combine(docPath, searchResultsSQL.First().Path));
-				NSUrl docUrl = new NSUrl(Path.Combine(docPath, searchResultsSQL.First().Path));
-				NSUrlRequest docRequest = new NSUrlRequest(docUrl);
-				resultView.MainFrame.LoadRequest(docRequest);
-//
-//				foreach(var result in searchResults)
-//				{
-//					Console.WriteLine(result.Name + ": " + result.Path);
-//				}
-//				Console.WriteLine("end searching with LINQ");
-
-
+				foreach(var result in searchResults)
+				{
+					Console.WriteLine(result.Name + ": " + result.Path);
+				}
+				Console.WriteLine("end searching with LINQ");
 			};
 		}
 		
