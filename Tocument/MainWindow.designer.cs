@@ -12,7 +12,7 @@ namespace Tocument
 	partial class MainWindowController
 	{
 		[Outlet]
-		MonoMac.AppKit.NSTableView methodList { get; set; }
+		MonoMac.AppKit.NSOutlineView methodList { get; set; }
 
 		[Outlet]
 		MonoMac.AppKit.NSTextField searchField { get; set; }
