@@ -521,6 +521,14 @@
 					<int key="connectionID">252</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">searchSubmit</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="142229174"/>
+					</object>
+					<int key="connectionID">254</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">makeTextLarger:</string>
 						<reference key="source" ref="917136319"/>
@@ -1582,7 +1590,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">252</int>
+			<int key="maxID">254</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1603,16 +1611,16 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>methodList</string>
-							<string>methodRow</string>
 							<string>resultView</string>
 							<string>searchField</string>
+							<string>searchSubmit</string>
 							<string>startSearchButton</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTableView</string>
-							<string>NSTextFieldCell</string>
 							<string>WebView</string>
+							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
 						</object>
@@ -1622,9 +1630,9 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>methodList</string>
-							<string>methodRow</string>
 							<string>resultView</string>
 							<string>searchField</string>
+							<string>searchSubmit</string>
 							<string>startSearchButton</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -1634,15 +1642,15 @@
 								<string key="candidateClassName">NSTableView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">methodRow</string>
-								<string key="candidateClassName">NSTextFieldCell</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">resultView</string>
 								<string key="candidateClassName">WebView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">searchField</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">searchSubmit</string>
 								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">

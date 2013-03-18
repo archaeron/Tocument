@@ -61,21 +61,14 @@ namespace Tocument
 			methodList.Delegate = myDel;
 			methodList.DataSource = new MethodListDataSource();
 
+			searchSubmit.Activated += (object sender, EventArgs e) => 
+			{
+				Console.WriteLine("do search on enter");
+			};
+
 			startSearchButton.Activated +=  (object sender, EventArgs e) =>
 			{
-				String searchQuery = searchField.StringValue;
-				
-				List<SearchIndex> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
-				Console.WriteLine(searchResultsSQL);
-
-				((MethodListDataSource)methodList.DataSource).Elements = searchResultsSQL;
-				methodList.ReloadData();
-
-				Console.WriteLine(Path.Combine(docPath, searchResultsSQL.First().Path));
-				NSUrl docUrl = new NSUrl(Path.Combine(docPath, searchResultsSQL.First().Path));
-				NSUrlRequest docRequest = new NSUrlRequest(docUrl);
-				resultView.MainFrame.LoadRequest(docRequest);
-
+				this.startSearch();
 
 
 //				Console.WriteLine("begin searching with LINQ");
@@ -91,8 +84,11 @@ namespace Tocument
 				Console.WriteLine("end searching with LINQ");
 			};
 		}
-		
-		//strongly typed window accessor
+
+
+
+			
+			//strongly typed window accessor
 		public new MainWindow Window {
 			get {
 				return (MainWindow)base.Window;
