@@ -22,6 +22,9 @@ namespace Tocument
 
 		[Outlet]
 		MonoMac.WebKit.WebView resultView { get; set; }
+
+		[Outlet]
+		MonoMac.AppKit.NSTextFieldCell methodRow { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -43,6 +46,11 @@ namespace Tocument
 			if (resultView != null) {
 				resultView.Dispose ();
 				resultView = null;
+			}
+
+			if (methodRow != null) {
+				methodRow.Dispose ();
+				methodRow = null;
 			}
 		}
 	}
