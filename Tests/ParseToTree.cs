@@ -8,7 +8,7 @@ namespace Tests
 	[TestFixture()]
 	public class ParseToTree
 	{
-		public Queue<DocumentNode> prepareQueueForSimpleTree()
+		public Queue<DocumentEntry> prepareQueueForSimpleTree()
 		{
 			DocumentEntry entry1 = new DocumentEntry();
 			entry1.Name = "Mono";
@@ -49,15 +49,29 @@ namespace Tests
 			DocumentEntry entry6 = new DocumentEntry();
 			entry6.Name = "Mono.Integer.add";
 
-			List<DocumentNode> child2_1 = new List<DocumentNode>();
-			child2_1.Add(new DocumentNode(entry2));
-			child2_1.Add(new DocumentNode(entry3));
+			List<DocumentNode> monoStringChildren = new List<DocumentNode>();
+			monoStringChildren.Add(new DocumentNode(entry3));
+			monoStringChildren.Add(new DocumentNode(entry4));
 
-			List<DocumentNode> child2_2 = new List<DocumentNode>();
+			List<DocumentNode> monoIntegerChildren = new List<DocumentNode>();
+			monoIntegerChildren.Add(new DocumentNode(entry6));
 
-			List<DocumentNode> child1_1 = new List<DocumentNode>();
+
+			DocumentNode monoString = new DocumentNode(entry2);
+			monoString.Children = monoStringChildren;
+
+			DocumentNode monoInteger = new DocumentNode(entry5);
+			monoInteger.Children = monoIntegerChildren;
+
+			List<DocumentNode> monoChildren = new List<DocumentNode>();
+			monoChildren.Add(monoString);
+			monoChildren.Add(monoInteger);
+
+			DocumentNode mono = new DocumentNode(entry1);
+			mono.Children = monoChildren;
 
 			List<DocumentNode> shouldBeTree = new List<DocumentNode>();
+			shouldBeTree.Add(mono);
 
 			return shouldBeTree;
 		}
@@ -66,7 +80,7 @@ namespace Tests
 		[Test()]
 		public void ParseSimpleTree()
 		{
-			Queue<DocumentNode> preparedQueue = prepareQueueForSimpleTree();
+			Queue<DocumentEntry> preparedQueue = prepareQueueForSimpleTree();
 
 			List<DocumentNode> tree = DocumentSearcher.readSearchQuery(preparedQueue);
 
