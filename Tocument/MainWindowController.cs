@@ -11,8 +11,10 @@ namespace Tocument
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
 	{
 		DocumentSearcher docSearcher;
+		LanguageChooserController myLangWindow;
 		String docPath = Path.Combine (Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Documents", "Tocuments", "Mono.docset", "Contents", "Resources", "Documents");
-		
+		Boolean isChooserOpen;
+
 		#region Constructors
 		
 		// Called when created from unmanaged code
@@ -43,6 +45,20 @@ namespace Tocument
 			Console.WriteLine(dbPath);
 			
 			docSearcher = new DocumentSearcher(dbPath);
+		}
+
+
+		[MonoMac.Foundation.Export("keyDown:")]
+		public override void KeyDown (NSEvent theEvent)
+		{
+			if((int)theEvent.ModifierFlags == 1048840 && theEvent.Characters == "d")
+			{
+				if(myLangWindow == null)
+				{
+					myLangWindow = new LanguageChooserController();
+				}
+				myLangWindow.ShowWindow(theEvent);
+			}
 		}
 		
 		#endregion

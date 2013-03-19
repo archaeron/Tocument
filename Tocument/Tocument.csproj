@@ -90,10 +90,16 @@
     </Compile>
     <Compile Include="MethodListDataSource.cs" />
     <Compile Include="MethodListDataSourceDelegate.cs" />
+    <Compile Include="LanguageChooser.cs" />
+    <Compile Include="LanguageChooserController.cs" />
+    <Compile Include="LanguageChooser.designer.cs">
+      <DependentUpon>LanguageChooser.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
     <InterfaceDefinition Include="MainMenu.xib" />
+    <InterfaceDefinition Include="LanguageChooser.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
