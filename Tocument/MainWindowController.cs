@@ -53,10 +53,10 @@ namespace Tocument
 
 			LoadDocumentationFromPath("index.html");
 
-			MethodListDataSourceDelegate methodListDataSourceDelegate = new MethodListDataSourceDelegate();
-			methodListDataSourceDelegate.ItemChanged += HandleItemChanged;
+//			MethodListDataSourceDelegate methodListDataSourceDelegate = new MethodListDataSourceDelegate();
+//			methodListDataSourceDelegate.ItemChanged += HandleItemChanged;
 
-			methodList.Delegate = methodListDataSourceDelegate;
+//			methodList.Delegate = methodListDataSourceDelegate;
 
 			methodList.DataSource = new MethodListDataSource();
 
@@ -71,22 +71,26 @@ namespace Tocument
 		void PerformSearch(object sender, EventArgs e)
 		{
 			String searchQuery = searchField.StringValue;
-			List<DocumentEntry> searchResultsSQL = docSearcher.SearchSQL(searchQuery);
-			List<DocumentEntry> SortedList = searchResultsSQL.OrderBy(o=>o.Type).ToList();
+			List<DocumentEntry> searchResults = docSearcher.SearchSQL(searchQuery);
 
-			((MethodListDataSource)methodList.DataSource).Elements = SortedList;
+			((MethodListDataSource)methodList.DataSource).Elements = searchResults;
 			methodList.ReloadData();
 			
-			if(SortedList.Count > 0)
+			if(searchResults.Count > 0)
 			{
-				LoadDocumentationFromPath(SortedList.First().Path);
+				LoadDocumentationFromPath(searchResults.First().Path);
 			}
-		}
 
-		void HandleItemChanged(object sender, MyItemChangedEventArgs e)
-		{
-			LoadDocumentationFromPath(e.MyItem.Path);
+//			foreach(var p in searchResults)
+//			{
+//				Console.WriteLine(p.Name + " : " + p.Path + " - " + p.Type);
+//			}
 		}
+//
+//		void HandleItemChanged(object sender, MyItemChangedEventArgs e)
+//		{
+//			LoadDocumentationFromPath(e.MyItem.Path);
+//		}
 
 		void LoadDocumentationFromPath(String path)
 		{

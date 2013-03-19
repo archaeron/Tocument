@@ -37,7 +37,6 @@ namespace Tocument
 			{
 				connection.Open ();
 				String sqlQuery = "SELECT name, path, type FROM searchIndex WHERE name LIKE @searchQuery ORDER BY name LIMIT 100";
-				Console.WriteLine(sqlQuery);
 				cmd.CommandText = sqlQuery;
 				cmd.Parameters.AddWithValue("searchQuery", "%" + searchQuery + "%");
 
@@ -55,36 +54,89 @@ namespace Tocument
 				}
 				connection.Close ();
 			}
-			
+
+			Queue<DocumentEntry> queue = new Queue<DocumentEntry>(result);
+
+			List<DocumentNode> dict = readSearchQuery(queue);
+			Console.WriteLine("Node: " + dict);
 			return result;
 		}
-		
-		public IQueryable<DocumentEntry> Search(String searchQuery)
+
+		public static List<DocumentNode> readSearchQuery(Queue<DocumentEntry> input)
 		{
-			Console.WriteLine("Searching for: " + searchQuery);
-			var connection = CreateConnection(this.databasePath);
-			
-			var linq = new DataContext (connection);
-			linq.Log = Console.Out;
-			
-			
-			
-			Table<DocumentEntry> table = linq.GetTable<DocumentEntry>();
-			
-			var query = from doc in table
-				where doc.Name.Contains("Mono")
-				select doc;
-			
-			var l = linq.GetCommand(query).Parameters;
-			
-			
-			//			foreach (var p in query) {
-			//				Console.WriteLine(p.Name);
-			//			}
-			
-			return query;
+			if(input.Count < 1)
+			{
+				return null;
+			}
+
+			List<DocumentNode> nodeList = new List<DocumentNode>();
+
+			DocumentEntry entry = input.Dequeue();
+			DocumentEntry nextEntry = input.Peek();
+
+			DocumentNode node = new DocumentNode(entry);
+
+			Console.WriteLine(entry);
+			Console.WriteLine(nextEntry);
+
+			if(nextEntry.Name.Contains(entry.Name))
+			{
+
+			}
+
+//
+//			while(input.Count > 0)
+//			{
+//				Console.WriteLine(input.Dequeue());
+//			}
+//			
+//
+//			DocumentNode node = new DocumentNode(entry);
+//			String name = entry.Name;
+//
+//
+//			bool goOn = true;
+//			position++;
+//			while(position < input.Count && goOn)
+//			{
+//				DocumentEntry nextEntry = input[position];
+//				bool isChild = nextEntry.Name.Contains(name);
+//				if(isChild)
+//				{
+//					Console.WriteLine("child!");
+//					Console.WriteLine(nextEntry);
+//					readSearchQuery(input, position);
+//					position++;
+//				}
+//				else
+//				{
+//					break;
+//				}
+//			}
+
+//			readSearchQuery(input, position+1);
+			return nodeList;
 		}
 		
+//		public IQueryable<DocumentEntry> Search(String searchQuery)
+//		{
+//			Console.WriteLine("Searching for: " + searchQuery);
+//			var connection = CreateConnection(this.databasePath);
+//			
+//			var linq = new DataContext (connection);
+//			linq.Log = Console.Out;
+//			
+//			
+//			
+//			Table<DocumentEntry> table = linq.GetTable<DocumentEntry>();
+//			
+//			var query = from doc in table
+//				where doc.Name.Contains("Mono")
+//				select doc;
+//			
+//			return query;
+//		}
+//		
 	}
 	
 }

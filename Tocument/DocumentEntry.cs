@@ -18,8 +18,10 @@ namespace Tocument
 
 		[Column(Name = "path")]
 		public string Path;
+
+		public override String ToString()
+		{
+			return Name + " : " + Path;
+		}
 	}
 }
-
-
-

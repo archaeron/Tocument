@@ -92,6 +92,7 @@
     <Compile Include="MethodListDataSource.cs" />
     <Compile Include="MethodListDataSourceDelegate.cs" />
     <Compile Include="DocumentEntry.cs" />
+    <Compile Include="DocumentNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

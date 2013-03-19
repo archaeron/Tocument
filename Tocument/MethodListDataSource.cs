@@ -5,21 +5,44 @@ using System.Collections.Generic;
 
 namespace Tocument
 {
-	[Register ("MethodListDataSource")]
-	public class MethodListDataSource : NSTableViewDataSource
+
+	public class MethodListDataSource : NSOutlineViewDataSource
 	{
 		public List<DocumentEntry> Elements
 		{ get; set; }
+
+		int c = 0;
 
 		public MethodListDataSource()
 		{
 			Elements = new List<DocumentEntry>();
 		}
 
-		[Export ("numberOfRowsInTableView:")]
-		public int NumberOfRowsInTableView(NSTableView table)
+		[Export ("numberOfChildrenOfItem:")]
+		public override int GetChildrenCount(NSOutlineView outlineView, NSObject item)
 		{
-			return Elements.Count;
+			if(c < 4)
+			{
+				return c++;
+			}
+			return 0;
+		}
+
+		[Export ("child:ofItem:")]
+		public override NSObject GetChild(NSOutlineView outlineView, int childIndex, MonoMac.Foundation.NSObject ofItem)
+		{
+			return new NSString("sfdgsd");
+		}
+
+		[Export ("objectValueForTableColumn:byItem:")]
+		public override NSObject GetObjectValue (NSOutlineView outlineView, NSTableColumn forTableColumn, NSObject byItem)
+		{
+			return new NSString("heloooo");
+		}
+
+		public override bool ItemExpandable (NSOutlineView outlineView, MonoMac.Foundation.NSObject item)
+		{
+			return true;
 		}
 
 		[Export ("tableView:objectValueForTableColumn:row:")]
