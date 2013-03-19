@@ -3,6 +3,7 @@ using System.Data.Linq.Mapping;
 
 namespace Tocument
 {
+
 	[Table(Name = "searchIndex")]
 	public class DocumentEntry
 	{
@@ -14,13 +15,15 @@ namespace Tocument
 		
 		[Column(Name = "type")]
 		public string Type;
-
+		
 		[Column(Name = "path")]
 		public string Path;
-
+		
 		public override String ToString()
 		{
 			return Name + " : " + Path;
 		}
 	}
+
 }
+

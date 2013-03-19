@@ -20,7 +20,11 @@ namespace Tests
 			queue.Enqueue(entry1);
 			queue.Enqueue(entry2);
 
-			DocumentSearcher.readSearchQuery(queue);
+			List<DocumentNode> tree = DocumentSearcher.readSearchQuery(queue);
+
+			List<DocumentNode> shouldBeTree = new List<DocumentNode>();
+			Console.WriteLine(tree);
+			Assert.AreEqual(shouldBeTree, tree, "Is the parsed tree correct");
 		}
 	}
 }

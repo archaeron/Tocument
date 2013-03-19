@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tocument", "Tocument\Tocume
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0F7DFEE8-FC9E-48B4-B8B2-42130C1035FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TocumentReader", "TocumentReader\TocumentReader.csproj", "{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -24,6 +26,12 @@ Global
 		{2E88FF46-B9C0-4D56-B8D4-13849110E189}.Debug|x86.Build.0 = Debug|x86
 		{2E88FF46-B9C0-4D56-B8D4-13849110E189}.Release|x86.ActiveCfg = Release|x86
 		{2E88FF46-B9C0-4D56-B8D4-13849110E189}.Release|x86.Build.0 = Release|x86
+		{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}.AppStore|x86.ActiveCfg = Release|Any CPU
+		{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}.AppStore|x86.Build.0 = Release|Any CPU
+		{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}.Debug|x86.Build.0 = Debug|Any CPU
+		{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}.Release|x86.ActiveCfg = Release|Any CPU
+		{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Tocument\Tocument.csproj

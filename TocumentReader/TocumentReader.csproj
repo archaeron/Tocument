@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0F7DFEE8-FC9E-48B4-B8B2-42130C1035FF}</ProjectGuid>
+    <ProjectGuid>{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Tests</RootNamespace>
-    <AssemblyName>Tests</AssemblyName>
+    <RootNamespace>TocumentReader</RootNamespace>
+    <AssemblyName>TocumentReader</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,19 +30,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
-    <Compile Include="ParseToTree.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DocumentEntry.cs" />
+    <Compile Include="DocumentNode.cs" />
+    <Compile Include="DocumentSearcher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\TocumentReader\TocumentReader.csproj">
-      <Project>{E2B086CF-D6E2-45BB-8EB1-8ECFE47A0090}</Project>
-      <Name>TocumentReader</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>
