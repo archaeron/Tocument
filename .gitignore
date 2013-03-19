@@ -110,3 +110,6 @@ UpgradeLog*.XML
 
 # Binaries
 Tocument/bin/
+
+# Tests
+Tests/test-results
