@@ -72,9 +72,15 @@ namespace Tocument
 			List<DocumentNode> nodeList = new List<DocumentNode>();
 
 			DocumentEntry entry = input.Dequeue();
-			DocumentEntry nextEntry = input.Peek();
-
 			DocumentNode node = new DocumentNode(entry);
+
+			nodeList.Add(node);
+
+//			while(input.Count > 0)
+//			{
+//
+//			}
+			DocumentEntry nextEntry = input.Peek();
 
 			Console.WriteLine(entry);
 			Console.WriteLine(nextEntry);

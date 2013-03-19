@@ -238,6 +238,56 @@ System.Collections.Generic.List`1[Tocument.DocumentNode]
 </ConsoleOutput>
                   <ConsoleError />
                 </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-03-19T16:23:28</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>0</Errors>
+                  <Failures>1</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>  Is the parsed tree correct
+  Expected is &lt;System.Collections.Generic.List`1[Tocument.DocumentNode]&gt; with 0 elements, actual is &lt;System.Collections.Generic.List`1[Tocument.DocumentNode]&gt; with 1 elements
+  Values differ at index [0]
+  Extra:    &lt; &lt;Mono : &gt; &gt;</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, IResolveConstraint expression, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message) [0x00000] in &lt;filename unknown&gt;:0 
+  at Tests.ParseToTree.Parse () [0x0004b] in /Users/nicolasgagliani/Projects/Tocument/Tests/ParseToTree.cs:27 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /private/tmp/source/bockbuild/profiles/mono-mac-release/build-root/mono-3.0.7/_build/mono-3.0.7.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                  <ConsoleOutput>Mono : 
+Mono.String : 
+System.Collections.Generic.List`1[Tocument.DocumentNode]
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2013-03-19T16:24:54</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>0</Errors>
+                  <Failures>1</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>  Is the parsed tree correct
+  Expected is &lt;System.Collections.Generic.List`1[Tocument.DocumentNode]&gt; with 0 elements, actual is &lt;System.Collections.Generic.List`1[Tocument.DocumentNode]&gt; with 1 elements
+  Values differ at index [0]
+  Extra:    &lt; &lt;Mono : &gt; &gt;</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, IResolveConstraint expression, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message) [0x00000] in &lt;filename unknown&gt;:0 
+  at Tests.ParseToTree.Parse () [0x0004b] in /Users/nicolasgagliani/Projects/Tocument/Tests/ParseToTree.cs:27 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00054] in /private/tmp/source/bockbuild/profiles/mono-mac-release/build-root/mono-3.0.7/_build/mono-3.0.7.git/mcs/class/corlib/System.Reflection/MonoMethod.cs:230 </StackTrace>
+                  <ConsoleOutput>Mono : 
+Mono.String : 
+System.Collections.Generic.List`1[Tocument.DocumentNode]
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
               </Results>
               <Tests />
             </TestRecord>
