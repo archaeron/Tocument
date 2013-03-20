@@ -76,62 +76,31 @@ namespace Tocument
 
 			nodeList.Add(node);
 
-//			while(input.Count > 0)
-//			{
-//
-//			}
-			DocumentEntry nextEntry = input.Peek();
-
-			Console.WriteLine(entry);
-			Console.WriteLine(nextEntry);
-
-			List<DocumentNode> childrenList = new List<DocumentNode>();;
-			while(input.Count > 0 && nextEntry.Name.Contains(entry.Name))
+			if(input.Count > 0)
 			{
-				nextEntry = input.Dequeue();
-				DocumentNode nextNode = new DocumentNode(nextEntry);
-				childrenList.Add(nextNode);
+				DocumentEntry nextEntry = input.Peek();
+
+				Console.WriteLine(entry);
+				Console.WriteLine(nextEntry);
+
+				while(input.Count > 0)
+				{
+					if(nextEntry.Name.Contains(entry.Name))
+					{
+						node.Children = readSearchQuery(input);
+					}
+					else
+					{
+						entry = input.Dequeue();
+						node = new DocumentNode(entry);
+						nextEntry = input.Peek();
+
+						nodeList.Add(node);
+					}
+
+				}
 			}
-			node.Children = childrenList;
 
-			while(input.Count > 0 && !nextEntry.Name.Contains(entry.Name))
-			{
-				nextEntry = input.Dequeue();
-				DocumentNode nextNode = new DocumentNode(nextEntry);
-				nodeList.Add(nextNode);
-			}
-
-//
-//			while(input.Count > 0)
-//			{
-//				Console.WriteLine(input.Dequeue());
-//			}
-//			
-//
-//			DocumentNode node = new DocumentNode(entry);
-//			String name = entry.Name;
-//
-//
-//			bool goOn = true;
-//			position++;
-//			while(position < input.Count && goOn)
-//			{
-//				DocumentEntry nextEntry = input[position];
-//				bool isChild = nextEntry.Name.Contains(name);
-//				if(isChild)
-//				{
-//					Console.WriteLine("child!");
-//					Console.WriteLine(nextEntry);
-//					readSearchQuery(input, position);
-//					position++;
-//				}
-//				else
-//				{
-//					break;
-//				}
-//			}
-
-//			readSearchQuery(input, position+1);
 			return nodeList;
 		}
 		
