@@ -13,19 +13,13 @@ namespace Tocument.Mac
 		public override void SelectionDidChange(NSNotification notification)
 		{
 			Console.WriteLine("clicked");
-			var table = notification.Object as NSTableView;
+			var table = notification.Object as NSOutlineView;
 
 			var rowNum = table.SelectedRow;
-			Console.WriteLine(rowNum);
-//			
-//			var ds = (MethodListDataSource)table.DataSource;
-//			
-//			var rowNum = table.SelectedRow;
-//		
-//			if (rowNum >= 0 && rowNum < ds.Elements.Count)
-//			{
-//					OnMyItemChanged(new MyItemChangedEventArgs(ds.Elements[rowNum]));
-//			}
+			DocumentNode node = (table.ItemAtRow(rowNum) as NSNodeBox).Node;
+			Console.WriteLine(node);
+
+			OnMyItemChanged(new MyItemChangedEventArgs(node.Entry));
 		}
 			
 		protected void OnMyItemChanged(MyItemChangedEventArgs e)

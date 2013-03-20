@@ -26,7 +26,7 @@ namespace Tocument
 			return new SqliteConnection("Data Source=" + this.databasePath + ",version=3");
 		}
 		
-		public List<DocumentEntry> SearchSQL(String searchQuery)
+		public List<DocumentNode> SearchSQL(String searchQuery)
 		{
 			Console.WriteLine("Searching for: " + searchQuery);
 			var connection = CreateConnection(this.databasePath);
@@ -58,8 +58,8 @@ namespace Tocument
 			Queue<DocumentEntry> queue = new Queue<DocumentEntry>(result);
 
 			List<DocumentNode> dict = readSearchQuery(queue);
-			Console.WriteLine("Node: " + dict);
-			return result;
+			Console.WriteLine("List: " + dict);
+			return dict;
 		}
 
 		public static List<DocumentNode> readSearchQuery(Queue<DocumentEntry> input)
@@ -85,9 +85,20 @@ namespace Tocument
 			Console.WriteLine(entry);
 			Console.WriteLine(nextEntry);
 
-			if(nextEntry.Name.Contains(entry.Name))
+			List<DocumentNode> childrenList = new List<DocumentNode>();;
+			while(input.Count > 0 && nextEntry.Name.Contains(entry.Name))
 			{
+				nextEntry = input.Dequeue();
+				DocumentNode nextNode = new DocumentNode(nextEntry);
+				childrenList.Add(nextNode);
+			}
+			node.Children = childrenList;
 
+			while(input.Count > 0 && !nextEntry.Name.Contains(entry.Name))
+			{
+				nextEntry = input.Dequeue();
+				DocumentNode nextNode = new DocumentNode(nextEntry);
+				nodeList.Add(nextNode);
 			}
 
 //

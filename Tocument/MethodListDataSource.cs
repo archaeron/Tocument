@@ -14,16 +14,22 @@ namespace Tocument.Mac
 		{
 			DocumentEntry entry1 = new DocumentEntry();
 			entry1.Name = "Mono";
+			entry1.Path = "index.html";
 			DocumentEntry entry2 = new DocumentEntry();
 			entry2.Name = "Mono.String";
+			entry2.Path = "index.html";
 			DocumentEntry entry3 = new DocumentEntry();
 			entry3.Name = "Mono.String.concat";
+			entry3.Path = "index.html";
 			DocumentEntry entry4 = new DocumentEntry();
 			entry4.Name = "Mono.String.compare";
+			entry4.Path = "index.html";
 			DocumentEntry entry5 = new DocumentEntry();
 			entry5.Name = "Mono.Integer";
+			entry5.Path = "index.html";
 			DocumentEntry entry6 = new DocumentEntry();
 			entry6.Name = "Mono.Integer.add";
+			entry6.Path = "index.html";
 			
 			List<DocumentNode> monoStringChildren = new List<DocumentNode>();
 			monoStringChildren.Add(new DocumentNode(entry3));

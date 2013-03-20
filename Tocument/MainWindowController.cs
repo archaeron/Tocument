@@ -73,6 +73,7 @@ namespace Tocument.Mac
 			methodListDelegate.ItemChanged += HandleItemChanged;
 
 			methodList.Delegate = methodListDelegate;
+			methodList.Target = this;
 
 			methodList.DataSource = new MethodListDataSource();
 
@@ -87,14 +88,14 @@ namespace Tocument.Mac
 		void PerformSearch(object sender, EventArgs e)
 		{
 			String searchQuery = searchField.StringValue;
-			List<DocumentEntry> searchResults = docSearcher.SearchSQL(searchQuery);
+			List<DocumentNode> searchResults = docSearcher.SearchSQL(searchQuery);
 
-			//((MethodListDataSource)methodList.DataSource).Elements = searchResults;
+			((MethodListDataSource)methodList.DataSource).Elements = searchResults;
 			methodList.ReloadData();
 			
 			if(searchResults.Count > 0)
 			{
-				LoadDocumentationFromPath(searchResults.First().Path);
+				LoadDocumentationFromPath(searchResults.First().Entry.Path);
 			}
 
 //			foreach(var p in searchResults)
@@ -105,6 +106,7 @@ namespace Tocument.Mac
 
 		void HandleItemChanged(object sender, MyItemChangedEventArgs e)
 		{
+			Console.WriteLine(e.MyItem);
 			LoadDocumentationFromPath(e.MyItem.Path);
 		}
 
