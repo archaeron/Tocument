@@ -8,14 +8,21 @@ namespace Tocument
 		public List<DocumentNode> Children;
 		public DocumentEntry Entry;
 
-		public DocumentNode(DocumentEntry entry)
+		public DocumentNode(DocumentEntry Entry)
 		{
-			this.Entry = entry;
+			this.Entry = Entry;
 		}
 
 		public override String ToString()
 		{
 			String s = Entry.ToString();
+			if(Children != null)
+			{
+				foreach(var Child in Children)
+				{
+					s += Child.ToString();
+				}
+			}
 			return s;
 		}
 	}

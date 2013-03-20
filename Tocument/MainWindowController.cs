@@ -6,7 +6,7 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
-namespace Tocument
+namespace Tocument.Mac
 {
 	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
 	{
@@ -69,10 +69,10 @@ namespace Tocument
 
 			LoadDocumentationFromPath("index.html");
 
-//			MethodListDataSourceDelegate methodListDataSourceDelegate = new MethodListDataSourceDelegate();
-//			methodListDataSourceDelegate.ItemChanged += HandleItemChanged;
+			MethodListDelegate methodListDelegate = new MethodListDelegate();
+			methodListDelegate.ItemChanged += HandleItemChanged;
 
-//			methodList.Delegate = methodListDataSourceDelegate;
+			methodList.Delegate = methodListDelegate;
 
 			methodList.DataSource = new MethodListDataSource();
 
@@ -89,7 +89,7 @@ namespace Tocument
 			String searchQuery = searchField.StringValue;
 			List<DocumentEntry> searchResults = docSearcher.SearchSQL(searchQuery);
 
-			((MethodListDataSource)methodList.DataSource).Elements = searchResults;
+			//((MethodListDataSource)methodList.DataSource).Elements = searchResults;
 			methodList.ReloadData();
 			
 			if(searchResults.Count > 0)
@@ -102,11 +102,11 @@ namespace Tocument
 //				Console.WriteLine(p.Name + " : " + p.Path + " - " + p.Type);
 //			}
 		}
-//
-//		void HandleItemChanged(object sender, MyItemChangedEventArgs e)
-//		{
-//			LoadDocumentationFromPath(e.MyItem.Path);
-//		}
+
+		void HandleItemChanged(object sender, MyItemChangedEventArgs e)
+		{
+			LoadDocumentationFromPath(e.MyItem.Path);
+		}
 
 		void LoadDocumentationFromPath(String path)
 		{

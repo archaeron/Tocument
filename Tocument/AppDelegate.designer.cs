@@ -1,5 +1,5 @@
 
-namespace Tocument
+namespace Tocument.Mac
 {
 	// Should subclass MonoMac.AppKit.NSResponder
 	[MonoMac.Foundation.Register("AppDelegate")]

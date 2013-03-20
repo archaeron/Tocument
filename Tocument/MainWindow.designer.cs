@@ -6,7 +6,7 @@
 //
 using MonoMac.Foundation;
 
-namespace Tocument
+namespace Tocument.Mac
 {
 	[Register ("MainWindowController")]
 	partial class MainWindowController

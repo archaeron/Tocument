@@ -5,7 +5,7 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
-namespace Tocument
+namespace Tocument.Mac
 {
 	public partial class MainWindow : MonoMac.AppKit.NSWindow
 	{

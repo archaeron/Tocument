@@ -4,7 +4,7 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 using MonoMac.ObjCRuntime;
 
-namespace Tocument
+namespace Tocument.Mac
 {
 	public partial class AppDelegate : NSApplicationDelegate
 	{
