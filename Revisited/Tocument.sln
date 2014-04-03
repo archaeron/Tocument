@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tocument", "Tocument\Tocument.fsproj", "{6A3AB401-2D51-4095-875C-14009D64171C}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "TocumentGTK", "TocumentGTK\TocumentGTK.fsproj", "{A5CC7ADC-5A1C-46DC-BA11-745D3B57A176}"
+Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tests", "Tests\Tests.fsproj", "{1EE70E63-AACA-4F80-A4CD-617ECAF13B2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,16 +11,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EE70E63-AACA-4F80-A4CD-617ECAF13B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE70E63-AACA-4F80-A4CD-617ECAF13B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE70E63-AACA-4F80-A4CD-617ECAF13B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE70E63-AACA-4F80-A4CD-617ECAF13B2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6A3AB401-2D51-4095-875C-14009D64171C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A3AB401-2D51-4095-875C-14009D64171C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A3AB401-2D51-4095-875C-14009D64171C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A3AB401-2D51-4095-875C-14009D64171C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5CC7ADC-5A1C-46DC-BA11-745D3B57A176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5CC7ADC-5A1C-46DC-BA11-745D3B57A176}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5CC7ADC-5A1C-46DC-BA11-745D3B57A176}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5CC7ADC-5A1C-46DC-BA11-745D3B57A176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Tocument\Tocument.fsproj
+		StartupItem = Tests\Tests.fsproj
 	EndGlobalSection
 EndGlobal

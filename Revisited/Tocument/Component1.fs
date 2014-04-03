@@ -23,10 +23,10 @@ module Reader =
                     yield (extractor r)
             }
       
+
+    let indexAll = 
+        Query.search "SELECT name, path, type FROM searchIndex ORDER BY name" [] (fun r -> (r.GetString 0,r.GetString 1,r.GetString 2))
     
-    let indexAll extractor = 
-        Query.search "SELECT name, path, type FROM searchIndex ORDER BY name LIMIT 100" [] extractor
-    
-    let indexWhere where extractor = 
-        Query.search ("SELECT name, path, type FROM searchIndex WHERE " + where + " ORDER BY name LIMIT 100") [] extractor
+    let getIndexByName where = 
+        Query.search ("SELECT name, path, type FROM searchIndex WHERE name = '" + where + "' ORDER BY name") [] (fun r -> (r.GetString 0,r.GetString 1,r.GetString 2))
 
