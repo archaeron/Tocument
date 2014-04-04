@@ -3,7 +3,7 @@
 // Pad, right-click on the project node, choose 'Options --> Build --> General' and change the target
 // framework to .NET 4.0 or .NET 4.5.
 
-module Sqlite
+namespace Tocument
 
 module Reader =
     module Query = 
