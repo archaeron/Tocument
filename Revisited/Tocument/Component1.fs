@@ -7,7 +7,7 @@ module Query =
     open System.Data.SQLite
     open System.Data
     let createConnection (path:string) = new SQLiteConnection ("Data Source=" + path + ";version=3")
-    let connection = createConnection "C:\Users\Nicolas\Documents\GitHub\Tocument\Revisited\BackboneJS.docset\Contents\Resources\docSet.dsidx"
+    let connection = createConnection "C:\Users\Nicolas\Documents\GitHub\Tocument\Revisited\Docsets\BackboneJS.docset\Contents\Resources\docSet.dsidx"
     connection.Open()
     let search txt args extractor =
         let cmd = connection.CreateCommand()
