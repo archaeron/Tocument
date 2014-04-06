@@ -18,8 +18,7 @@ module Query =
             use r = cmd.ExecuteReader()
             while(r.Read()) do
                 yield (extractor r)
-        }
-      
+        } 
 
     let indexAll = 
         search "SELECT name, path, type FROM searchIndex ORDER BY name" [] (fun r -> (r.GetString 0,r.GetString 1,r.GetString 2))
