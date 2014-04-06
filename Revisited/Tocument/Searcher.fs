@@ -9,13 +9,8 @@ For this example, an SQLite version of the Northwind Database was used; this fil
 *)
 
 let pathToSQLiteDB = 
-    @"C:\Users\Nicolas\Documents\GitHub\Tocument\Revisited\BackboneJS.docset\Contents\Resources\docSet.dsidx"
+    @"C:\Users\Nicolas\Documents\GitHub\Tocument\Revisited\Docsets\BackboneJS.docset\Contents\Resources\docSet.dsidx"
 
-//#r @"D:\Projects\Research\Libraries\FSharp.PowerPack.dll"
-//#r @"D:\Projects\Research\Libraries\FSharp.PowerPack.Linq.dll"
-//#r @"D:\Projects\Research\Libraries\DbLinq.dll"
-//#r @"D:\Projects\Research\Libraries\DbLinq.SQLite.dll"
-//#r @"D:\Projects\Research\Libraries\System.Data.SQLite.dll"
 open System.Data.Linq
 open System.Data.Linq.Mapping
 open System.Data.SQLite
@@ -60,7 +55,10 @@ let namesList =
     |> Seq.toList
 
 let private findDocsets path =
-    4
+    let dirs = System.IO.Directory.GetDirectories(path) |> Array.toList
+    let databases = List.map (fun path -> System.IO.Path.Combine(path, "Contents", "Resources", "docSet.dsidx")) dirs
+    databases
+    
 
 type Searcher(path: string) =
     member private x.languagesWithPath =
