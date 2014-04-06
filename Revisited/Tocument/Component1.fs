@@ -10,7 +10,7 @@ module Reader =
         open Mono.Data.Sqlite
         open System.Data
         let createConnection (path:string) = new SqliteConnection ("Data Source=" + path + ",version=3")
-        let connection = createConnection "/home/jorismorger/Projects/Tocument2/Revisited/BackboneJS.docset/Contents/Resources/docSet.dsidx"
+        let connection = createConnection "/home/jorismorger/Projects/Tocument/Revisited/Docsets/BackboneJS.docset/Contents/Resources/docSet.dsidx"
         connection.Open()
         let search txt args extractor =
             let cmd = connection.CreateCommand()
@@ -22,7 +22,7 @@ module Reader =
                 while(r.Read()) do
                     yield (extractor r)
             }
-      
+
 
     let indexAll = 
         Query.search "SELECT name, path, type FROM searchIndex ORDER BY name" [] (fun r -> (r.GetString 0,r.GetString 1,r.GetString 2))
