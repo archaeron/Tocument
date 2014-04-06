@@ -10,7 +10,7 @@
     <RootNamespace>View.Windows</RootNamespace>
     <AssemblyName>View.Windows</AssemblyName>
     <targetframeworkversion>v4.5</targetframeworkversion>
-    <TargetFSharpCoreVersion>4.3.0.0</TargetFSharpCoreVersion>
+    <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
     <Name>View.Windows</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -79,5 +79,12 @@
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tocument\Tocument.fsproj">
+      <Name>Tocument</Name>
+      <Project>{6a3ab401-2d51-4095-875c-14009d64171c}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
 </Project>
