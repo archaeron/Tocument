@@ -14,8 +14,10 @@ let loadWindow() =
    let searchBox = window.SearchBox
    let text = searchBox.GetLineText 0
 
-   let names = Tocument.Searcher.namesList
-   
+   let names = Tocument.Search.namesList
+   let searcher = Tocument.Search.Searcher @"C:\Users\Nicolas\Documents\GitHub\Tocument\Revisited\Docsets"
+   let languages = searcher.languages
+
    printfn "%A" search
    
    // Your awesome code goes here and you have strongly typed access to the XAML via "window"

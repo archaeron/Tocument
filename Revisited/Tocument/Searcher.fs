@@ -15,6 +15,7 @@ open System.Data.Linq
 open System.Data.Linq.Mapping
 open System.Data.SQLite
 open Microsoft.FSharp.Linq
+open FSharp.Data
 
 //open Microsoft.FSharp.Linq.Query
 [<Table(Name = "searchIndex")>]
@@ -54,9 +55,46 @@ let namesList =
     }
     |> Seq.toList
 
+
+type DocInfo = XmlProvider<"""<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+<key>CFBundleIdentifier</key>
+<string>backbone</string>
+<key>CFBundleName</key>
+<string>Backbone.js</string>
+<key>DocSetPlatformFamily</key>
+<string>backbone</string>
+<key>isDashDocset</key></dict>
+</plist>
+""">
+
 let private findDocsets path =
     let dirs = System.IO.Directory.GetDirectories(path) |> Array.toList
     let databases = List.map (fun path -> System.IO.Path.Combine(path, "Contents", "Resources", "docSet.dsidx")) dirs
+    let docInfoPlist = List.map (fun path -> System.IO.Path.Combine(path, "Contents", "Info.plist")) dirs
+    let parsed = DocInfo.Parse("""<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+<key>CFBundleIdentifier</key>
+<string>backbone</string>
+<key>CFBundleName</key>
+<string>Backbone.js</string>
+<key>DocSetPlatformFamily</key>
+<string>backbone</string>
+<key>isDashDocset</key><true/></dict>
+</plist>""")
+    
+
+    let lengthKeys = parsed.Dict.Keys.Length
+    let lengthValues = parsed.Dict.Strings.Length
+    let minLength = min lengthKeys lengthValues
+
+    let keys = Seq.take minLength parsed.Dict.Keys
+    let values = Seq.take minLength parsed.Dict.Strings
+    
+
+    let infos = Map.ofSeq <| Seq.zip keys values
     databases
     
 
