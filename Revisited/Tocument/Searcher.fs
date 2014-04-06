@@ -1,4 +1,4 @@
-﻿module Tocument.Searcher
+﻿module Tocument.Search
 
 (*
 For the SQLite specific libraries used in this snippet, see the following links:
@@ -58,6 +58,23 @@ let namesList =
             yield i.Name
     }
     |> Seq.toList
+
+let private findDocsets path =
+    4
+
+type Searcher(path: string) =
+    member private x.languagesWithPath =
+        findDocsets path
+
+    /// Finds all language docsets in the path
+    member x.languages =
+        findDocsets path
+
+    /// <summary>searches in a language for a query</summary>
+    /// <param name="language">one of the languages in <c>Searcher.languages</c></param>
+    member x.search language query =
+        4
+
 //find company with id "ALFKI"
 //let alfki =
 //    query <@ seq { for c in customers do
